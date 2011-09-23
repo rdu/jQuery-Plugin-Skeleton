@@ -20,16 +20,26 @@
 	OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-;(function($){
-    $.fn.extend({
-        pluginname: function(options) {
-            this.defaultOptions = {};
-
-            var settings = $.extend({}, this.defaultOptions, options);
-
-            return this.each(function() {
-                var $this = $(this);
-            });
-        }
-    });
-})(jQuery);
+(function($, window, undefined) {
+	var settings = {}; //default settings
+	
+	var methods = {
+		init: function(options) {
+			return this.each(function() {
+				if(options) $.extend(settings, options);
+			});
+		}
+	};
+	
+	$.fn.extend({
+		PluginName: function(method) {
+			if (methods[method]) {
+				return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+			} else if (typeof method === 'object' || !method) {
+				return methods.init.apply(this, arguments);
+			} else {
+				$.error('Method ' +  method + ' does not exist on jQuery.PluginName');
+			}
+		}
+	});
+})(jQuery, window);
