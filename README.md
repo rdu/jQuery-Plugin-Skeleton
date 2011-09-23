@@ -10,16 +10,24 @@ Only thing you really have to do is edit the MIT license on the first line:
 And then name your plugin by replacing "`pluginname`" here:
 
     pluginname: function(options) {
+    
+And once more replace "`pluginname`" here:
 
-Lastly, you basically just start writing you plugin right under this line:
+    $.error('Method ' + method + ' does not exist on jQuery.PluginName');
 
-    $this = $(this);
+Finally you can add more code the `init` method, or add methods of your own in the `method` variable
+found on line 16:
 
-Make sure to use `$this` to reference the element selected from the plugin. Example, `$this` in this in this case:
-
-    $('#myelement').pluginname();
-
-Would equal `#myelement`, or for multiple items selected, the current item the plugin is on while looping through.
+    var methods = {
+    	init: function(options) {
+			console.log(options);
+			return this.each(function() {
+				if(options) $.extend(settings, options);
+				var $this = $(this);
+				
+			});
+		}
+	};
 
 ##Note!
 This plugin allows you to keep on chaining, so, for example:
