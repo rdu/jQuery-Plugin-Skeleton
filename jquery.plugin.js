@@ -25,8 +25,10 @@
 	
 	var methods = {
 		init: function(options) {
-			return this.each(function() {
+			return this.each(function() { //ensures chainability
 				if(options) $.extend(settings, options);
+				var $this = $(this);
+				//YOUR INIT CODE HERE
 			});
 		}
 	};
