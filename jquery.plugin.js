@@ -21,12 +21,15 @@
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 (function($, window, undefined) {
-	var settings = {}; //default settings
+	var settings = {
+		//default settings
+	},
 	
-	var methods = {
+	methods = {
 		init: function(options) {
 			return this.each(function() { //ensures chainability
 				if(options) $.extend(settings, options);
+				
 				var $this = $(this);
 				//YOUR INIT CODE HERE
 			});
@@ -40,7 +43,7 @@
 			} else if (typeof method === 'object' || !method) {
 				return methods.init.apply(this, arguments);
 			} else {
-				$.error('Method ' +  method + ' does not exist on jQuery.PluginName');
+				$.error('Method ' +  method + ' does not exist in jQuery.PluginName');
 			}
 		}
 	});
